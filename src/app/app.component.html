@@ -1,0 +1,32 @@
+
+<h1>Blog posts</h1>
+<hr>
+<h5>Create/Edit a post</h5>
+<input #title type="text" class="form-control" placeholder="Title" style="width:20%">
+<input #content type="text" class="form-control" placeholder="Content" style="width:20%">
+<input #author type="text" class="form-control" placeholder="Author" style="width:20%">
+<button type="button" class="btn btn-success" (click)="addPost(title.value, content.value, author.value)">Create</button>
+<hr>
+<h5>Existing posts</h5>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Author</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tr *ngFor="let post of posts | async">
+  <td>{{ post.id}}</td>
+  <td>{{post.title}}</td>
+  <td>{{post.content}}</td>
+  <td>{{post.author}}</td>
+  <td><button (click)="updatePost(post.id, title.value, content.value, author.value)" type="button" class="btn btn-primary">Edit</button></td>
+  <td><button (click)="deletePost(post.id.toString())" type="button" class="btn btn-danger">Delete</button></td>
+</tr>
+</table>
+
+{{ requestStatus | json}}
